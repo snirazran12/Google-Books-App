@@ -4,6 +4,13 @@ const searchButton = document.getElementById('searchButton');
 const apiKey = 'AIzaSyAHtZNkp1041bzgwpk-t42YYAtnNrG1PNw';
 let googleBooks = [];
 
+searchBar.addEventListener('keyup', (event) => {
+    if (event.keyCode === 13) {
+        searchButton.click();
+    }
+}
+)
+
 searchButton.addEventListener('click', () => {
     const searchString = searchBar.value?.toLowerCase();
     if(searchString){
@@ -29,13 +36,13 @@ const displayBooks = (books) => {
         .map((book) => {
         description = book.volumeInfo?.description;
         if(!description) {
-            description = 'No desription for this book.'
+            description = 'No desription for this book'
         }
         return `
         <li class="book">
             <h2>${book.volumeInfo?.title}</h2>
             <p>${description}</p>
-            <img src=${book.volumeInfo?.imageLinks?.thumbnail} alt=" No image"></img>
+            <img src=${book.volumeInfo?.imageLinks?.thumbnail} alt="No image"></img>
         </li>
         `;
         })
